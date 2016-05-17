@@ -30,6 +30,16 @@ class PublicController {
         render "Output : ${output}"
     }
 
+    def memoizeWithTime = {
+        Long userId = 9
+        String output = redisService.memoize("user:$userId", [expire: 3600]) {
+            // expensive to calculate method that returns a String
+            "Hello Complex : ${calculateSomeComplexData(userId)}"
+        }
+        render "Output : ${output}"
+    }
+
+
 
     public static String calculateSomeComplexData(Long userId) {
         println "**** Doing some very very very Complex calculation for ${userId}***********"
