@@ -39,6 +39,19 @@ class PublicController {
         render "Output : ${output}"
     }
 
+    def memoizeDomain = {
+
+        Long personId = 2
+        String key = "person:$personId:favorite"
+
+        Person person = redisService.memoizeDomainObject(Person, key) {
+            println "------ Some Complex query to fetch person ------------"
+            Person person = Person.get(2)
+            return person
+        }
+
+        render "Output : ${person}"
+    }
 
 
     public static String calculateSomeComplexData(Long userId) {
