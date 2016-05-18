@@ -23,6 +23,17 @@
 			</g:if>
 			<ol class="property-list person">
 			
+				<g:if test="${personInstance?.addresses}">
+				<li class="fieldcontain">
+					<span id="addresses-label" class="property-label"><g:message code="person.addresses.label" default="Addresses" /></span>
+					
+						<g:each in="${personInstance.addresses}" var="a">
+						<span class="property-value" aria-labelledby="addresses-label"><g:link controller="address" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${personInstance?.age}">
 				<li class="fieldcontain">
 					<span id="age-label" class="property-label"><g:message code="person.age.label" default="Age" /></span>
