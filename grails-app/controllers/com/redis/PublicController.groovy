@@ -41,14 +41,26 @@ class PublicController {
 
     def memoizeDomain = {
 
-        Long personId = 2
+        Long personId = 5
         String key = "person:$personId:favorite"
+
+        println "--"
+        println "--"
+        println "--"
+        println "--"
 
         Person person = redisService.memoizeDomainObject(Person, key) {
             println "------ Some Complex query to fetch person ------------"
-            Person person = Person.get(2)
+            Person person = Person.findById(personId)
+            println "----- Seeing if DB Query is executed -----------"
             return person
         }
+        println "************ Memoization Done ****************"
+
+        Person p1 = Person.findById(personId)
+        println "---Object---person----------" + person
+        println "---ID-------person----------" + person.id
+        println "---ID-------p1----------" + p1
 
         render "Output : ${person}"
     }
