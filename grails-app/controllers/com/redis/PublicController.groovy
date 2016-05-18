@@ -66,6 +66,12 @@ class PublicController {
     }
 
 
+    def memoizeTaglib = {
+
+        render(view: '/public/taglib', model: [mykey: 8])
+    }
+
+
     public static String calculateSomeComplexData(Long userId) {
         println "**** Doing some very very very Complex calculation for ${userId}***********"
         return 1000 * userId
