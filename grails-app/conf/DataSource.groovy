@@ -17,6 +17,7 @@ environments {
         dataSource {
             username = "root"
             password = "nextdefault"
+            logSql = true
             dbCreate = "create" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost/redis_demo?useUnicode=yes&characterEncoding=UTF-8"
         }
